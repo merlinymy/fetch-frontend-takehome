@@ -1,0 +1,29 @@
+<form [formGroup]="userCreationForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label>Full Name:</label>
+        <input type="text" formControlName="name" required>
+    </div>
+    <div>
+        <label>Email:</label>
+        <input type="text" formControlName="email" required>
+    </div>
+    <div>
+        <label>Password:</label>
+        <input type="text" formControlName="password" required>
+    </div>
+    <div>
+        <label>Occupation:</label>
+        <select formControlName="occupation">
+            <option value="">Please select</option>
+            <option *ngFor="let occupation of occupations" [value]="occupation" required>{{occupation}}</option>
+          </select>
+    </div>
+    <div>
+        <label>State:</label>
+        <select formControlName="state">
+            <option value="">Please select</option>
+            <option *ngFor="let state of states" [value]="state" required>{{state.abbreviation}}</option>
+        </select>
+    </div>
+    <button type="submit" [disabled]="userCreationForm.invalid">Create User</button>
+</form>
