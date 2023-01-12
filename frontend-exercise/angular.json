@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "fetch-frontend": {
+    "frontend-exercise": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/fetch-frontend",
+            "outputPath": "dist/frontend-exercise",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -64,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "fetch-frontend:build:production"
+              "browserTarget": "frontend-exercise:build:production"
             },
             "development": {
-              "browserTarget": "fetch-frontend:build:development"
+              "browserTarget": "frontend-exercise:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -75,7 +75,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "fetch-frontend:build"
+            "browserTarget": "frontend-exercise:build"
           }
         },
         "test": {
