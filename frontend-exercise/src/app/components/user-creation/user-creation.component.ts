@@ -47,16 +47,7 @@ export class UserCreationComponent implements OnInit {
 
     if (this.userCreationForm.valid) {
       // Send a POST request with the form data to the endpoint
-      this.http.post('https://frontend-take-home.fetchrewards.com/form', this.userCreationForm.value).subscribe(
-        (data) => {
-          console.log('User created successfully!');
-          // Provide feedback upon successful form submission
-          alert('User created successfully!');
-        },
-        (error) => {
-          console.log('Error:', error);
-        }
-      );
+      this.backendApiService.postUserForm(this.userCreationForm.value);
     }
   }
 }

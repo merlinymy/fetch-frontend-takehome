@@ -17,5 +17,16 @@ export class BackendApiService {
     return this.httpClient.get<FormOptions>(this.baseUrl);
   }
 
-  // postUserCreationForm(): 
+  postUserForm(value: any): void {
+   this.httpClient.post('https://frontend-take-home.fetchrewards.com/form', value).subscribe(
+      (data) => {
+        console.log('User created successfully!');
+        // Provide feedback upon successful form submission
+        alert('User created successfully!');
+      },
+      (error) => {
+        console.log('Error:', error);
+      }
+    )
+  }
 }
