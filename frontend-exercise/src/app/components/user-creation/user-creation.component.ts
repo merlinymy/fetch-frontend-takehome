@@ -53,7 +53,7 @@ export class UserCreationComponent implements OnInit {
       (error: HttpErrorResponse) => {
         console.log(error);
       }
-    )
+    ) 
   }
 
   onSubmit() {
@@ -62,6 +62,8 @@ export class UserCreationComponent implements OnInit {
     if (this.userCreationForm.valid) {
       // Send a POST request with the form data to the endpoint
       this.backendApiService.postUserForm(this.userCreationForm.value);
+      this.invalidSubmit=false;
+      this.userCreationForm.reset();
     } else {
       this.invalidSubmit = true;
       this.formNotValidMsg = "There was a problem with your submission. Please review the fields above."
