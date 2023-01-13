@@ -1,29 +1,70 @@
-<form [formGroup]="userCreationForm" (ngSubmit)="onSubmit()">
-    <div>
-        <label>Full Name:</label>
-        <input type="text" formControlName="name" required>
+<div class="contain">
+    <div class="wrapper">
+        <div class="title-section">
+            <h2 class="title text-content-primary">
+                Fetch's frontend takehome Excercise
+            </h2> 
+            <h3 class="subtitle text-content-primary">
+                By Merlin, a curious SDE, who is constantly learning new technologies and exploring new topics.
+            </h3> 
+        </div>
+        <form class="form-section" [formGroup]="userCreationForm" (ngSubmit)="onSubmit()">
+            <div class="fullname">
+                <label *ngIf="!invalidSubmit||!nameControl.errors?.['required']">Full Name
+                    <span class="text-accent">*</span>
+                </label>
+                <div class = "warning" *ngIf="invalidSubmit && nameControl.errors?.['required']">Full Name (required)</div>
+                <input type="text" formControlName="name" required>
+            </div>
+
+            <div class="password">
+                <label *ngIf="!invalidSubmit||!passwordControl.errors?.['required']">Password
+                    <span class="text-accent">*</span>
+                </label>
+                <div class = "warning" *ngIf="invalidSubmit && passwordControl.errors?.['required']">Password (required)</div>
+                <input type="text" formControlName="password" required>
+            </div>
+        
+            <div class="fullwidth">
+                <label *ngIf="!invalidSubmit||(!emailControl.errors?.['required']&&!emailControl.errors?.['email'])">Email
+                    <span class="text-accent">*</span>
+                </label>
+                <div class = "warning" *ngIf="invalidSubmit && emailControl.errors?.['required']">Email (required)</div>
+                <div class = "warning" *ngIf="invalidSubmit && emailControl.errors?.['email']">Email is invalid</div>
+                <input type="text" [formControl]="emailControl" required>
+            </div>
+        
+            
+            <div class="fullwidth">
+                <label *ngIf="!invalidSubmit||!occupationControl.errors?.['required']">Occupation
+                    <span class="text-accent">*</span>
+                </label>
+                <div class = "warning" *ngIf="invalidSubmit && occupationControl.errors?.['required']">Occupation (required)</div>
+                <mat-select formControlName="occupation">
+                    <mat-option class="option" value="">Please select an occupation</mat-option>
+                    <mat-option *ngFor="let occupation of occupations" [value]="occupation" required>{{occupation}}</mat-option>
+                  </mat-select>
+                </div>
+        
+            
+            <div class="fullwidth">
+                <label *ngIf="!invalidSubmit||!stateControl.errors?.['required']">State
+                    <span class="text-accent">*</span>
+                </label>
+                <div class = "warning" *ngIf="invalidSubmit && stateControl.errors?.['required']">State (required)</div>
+                <mat-select formControlName="state">
+                    <mat-option class="option" value="">Please select a state</mat-option>
+                    <mat-option *ngFor="let state of states" [value]="state" required>{{state.abbreviation}}</mat-option>
+                </mat-select>
+            </div>
+        
+            
+            <button class="create-user-button" type="submit">
+                <span class="button-text">Create User</span>
+                <span class="button-icon"><svg width="24" height="20" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z"/></svg></span>
+            </button>
+            <p class="fullwidth warning">{{formNotValidMsg}}</p>
+        </form>
     </div>
-    <div>
-        <label>Email:</label>
-        <input type="text" formControlName="email" required>
-    </div>
-    <div>
-        <label>Password:</label>
-        <input type="text" formControlName="password" required>
-    </div>
-    <div>
-        <label>Occupation:</label>
-        <select formControlName="occupation">
-            <option value="">Please select</option>
-            <option *ngFor="let occupation of occupations" [value]="occupation" required>{{occupation}}</option>
-          </select>
-    </div>
-    <div>
-        <label>State:</label>
-        <select formControlName="state">
-            <option value="">Please select</option>
-            <option *ngFor="let state of states" [value]="state" required>{{state.abbreviation}}</option>
-        </select>
-    </div>
-    <button type="submit" [disabled]="userCreationForm.invalid">Create User</button>
-</form>
+</div>
+
